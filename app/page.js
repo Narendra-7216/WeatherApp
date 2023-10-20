@@ -1,7 +1,14 @@
 "use client"
 import axios from 'axios'
 import React, { useState } from 'react'
-// import {BsSearch} from 'react-icons/bs'
+import Image from 'next/image'
+import clear from '../public/clear.png'
+import cloud from '../public/cloud.png'
+import drizzle from '../public/drizzle.png'
+import humidity from '../public/humidity.png'
+import rain from '../public/rain.png'
+import snow from '../public/snow.png'
+
 
 const page = () => {
   const api_key='dfafd0913cbfd32862c58863cbd8f014';
@@ -12,6 +19,7 @@ const page = () => {
   const [temp, settemp] = useState()
   const [humidity, sethumidity] = useState()
   const [speed, setspeed] = useState()
+  const [icon, seticon] = useState()
 
 
 
@@ -23,8 +31,39 @@ console.log(city)
     setcityName(response.data.name)
     sethumidity(response.data.main.humidity)
    settemp(response.data.main.temp);
-   setspeed(response.data.wind.speed)
-   
+   setspeed(response.data.wind.speed);
+    if(response.data.weather[0].icon==="01d"||response.data.weather[0].icon==="01n")
+    {
+        seticon(clear)
+    }
+    else if(response.data.weather[0].icon==="02d"||response.data.weather[0].icon==="02n")
+    {
+      seticon(cloud)
+    }
+    else if(response.data.weather[0].icon==="03d"||response.data.weather[0].icon==="03n")
+    {
+      seticon(drizzle)
+    }
+    else if(response.data.weather[0].icon==="04d"||response.data.weather[0].icon==="04n")
+    {
+      seticon(drizzle)
+    }
+    else if(response.data.weather[0].icon==="09d"||response.data.weather[0].icon==="09n")
+    {
+      seticon(rain)
+    }
+    else if(response.data.weather[0].icon==="10d"||response.data.weather[0].icon==="10n")
+    {
+      seticon(rain)
+    }
+    else if(response.data.weather[0].icon==="13d"||response.data.weather[0].icon==="13n")
+    {
+      seticon(snow)
+    }
+    else
+    {
+      seticon(clear)
+    }
     
   }  
 
@@ -49,6 +88,9 @@ console.log(city)
       
     </div>
     <div className=' bg-purple-600 text-white rounded flex justify-center items-center ml-20 mr-20 gap-4'>
+      <div>
+        <Image src={icon} />
+      </div>
       <div className='bg-black rounded p-20 m-4'>
         <h1>City:{cityName}</h1>
       </div>
