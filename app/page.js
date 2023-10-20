@@ -87,10 +87,11 @@ console.log(city)
       >search</button>
       
     </div>
-    <div className=' bg-purple-600 text-white rounded flex justify-center items-center ml-20 mr-20 gap-4'>
-      <div>
+    <div className='flex justify-center ml-52 mr-52 mb-10 bg-purple-500 rounded-full items-center'>
         <Image src={icon} />
       </div>
+    <div className=' bg-purple-600 text-white rounded flex justify-center items-center ml-20 mr-20 gap-4'>
+      
       <div className='bg-black rounded p-20 m-4'>
         <h1>City:{cityName}</h1>
       </div>
